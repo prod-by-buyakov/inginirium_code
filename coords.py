@@ -8,4 +8,4 @@ def coords(x, y):
     else:
         print("|V")
 
-coords(4, -3)
+coords(6, -2)
