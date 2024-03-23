@@ -23,8 +23,8 @@ def color_round(a):
 def change_color():
     global i, color
     r = i % 255
-    g = 2 * i % 255
-    b = 3 * i % 255
+    g = 2 * i % 25
+    b = 3 * i % 2
     color = "#" + color_round(r) + color_round(g) + color_round(b)
     canvas.itemconfig(oval, fill=color)
 
@@ -32,12 +32,12 @@ def change_color():
         i += 1
     else:
         i += 1
-    root.after(5, change_color)
+    root.after(10, change_color)
 
 
 def sizeble(event):
     global size, oval
-    if event.keysym == 'Up' and size <= 99:
+    if event.keysym == 'Up' and size <= 9900:
         size += 1
     elif event.keysym == 'Down' and size > 0:
         size -= 1
@@ -64,7 +64,7 @@ i = 0
 painted = False
 label = tkinter.Label(root, text=size)
 label.pack()
-canvas = tkinter.Canvas(root, bg='#fff', width=640, height=640)
+canvas = tkinter.Canvas(root, bg='#fff', width=1000, height=1000)
 oval = canvas.create_oval(x - size, y - size, x + size, y + size, fill='#0f0')
 canvas.pack()
 change_color()
