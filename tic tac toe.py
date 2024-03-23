@@ -41,11 +41,11 @@ def is_end(board):
             return 'col', i
         if check_i_line(board, i):
             return 'line', i
-        if check_main_diag(board):
-            return 'diag', 1
-        if check_secondary_diag(board):
-            return 'diag', 2
-        return None
+    if check_main_diag(board):
+        return 'diag', 1
+    if check_secondary_diag(board):
+        return 'diag', 2
+    return None
 
 
 class Board:
@@ -64,38 +64,39 @@ class Board:
         y = mouse_pos[1] // self.size
         self.board[y][x] = self.move
         self.move = -self.move
-    def check_end (self):
+
+    def check_end(self):
         is_end_info = is_end(self.board)
         shift = self.w // 10
-        if is_end_info is not  None:
+        if is_end_info is not None:
             type_end = is_end_info[0]
             number = is_end_info[1]
             if type_end == 'col':
-              x0=(number+.5)*self.size
-              y0=shift
-              x1=x0
-              y1=self.h-shift
+                x0 = (number + .5) * self.size
+                y0 = shift
+                x1 = x0
+                y1 = self.h - shift
 
             elif type_end == 'line':
-              x0=shift
-              y0=(number+.5)*self.size
-              x1=self.w-shift
-              y1=y0
+                x0 = shift
+                y0 = (number + .5) * self.size
+                x1 = self.w - shift
+                y1 = y0
             elif type_end == 'diag':
-              if number ==1:
-                  x0=shift
-                  y0=shift
-                  x1=self.w-shift
-                  y1=self.h-shift
-              elif number ==2:
-                  x0=self.w-shift
-                  y0=shift
-                  x1=shift
-                  y1=self.h-shift
-            pygame.draw.line(win,RED,(x0,y0),(x1,y1),10)
+                if number == 1:
+                    x0 = shift
+                    y0 = shift
+                    x1 = self.w - shift
+                    y1 = self.h - shift
+                elif number == 2:
+                    x0 = self.w - shift
+                    y0 = shift
+                    x1 = shift
+                    y1 = self.h - shift
+            pygame.draw.line(win, RED, (x0, y0), (x1, y1), 10)
             pygame.display.update()
             pygame.time.delay(3000)
-            return  True
+            return True
         else:
             return False
 
